@@ -1,0 +1,60 @@
+class Product:
+    def __init__(self, name, price, stock, category):
+        self.name = name
+        self.price = price
+        self.stock = stock
+        self.category = category
+
+
+class Order:
+    def __init__(self, customer, cart_items):
+        self.customer = customer
+        self.items = cart_items
+        self.total_price = self.calculate_total()
+
+    def calculate_total(self):
+        total = 0
+        for product, quantity in self.items.items():
+            total += product.price * quantity
+        return total
+
+
+class Customer:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.order_history = []
+
+    def add_order(self, order):
+        self.order_history.append(order)
+
+
+class ShoppingCart:
+    def __init__(self):
+        self.items = {}
+
+    def add_product(self, product, quantity=1):
+        if product.stock >= quantity:
+            if product in self.items:
+                self.items[product] += quantity
+            else:
+                self.items[product] = quantity
+            product.stock -= quantity
+        else:
+            print(f"Недостаточно товара {product.name} на складе")
+
+    def remove_product(self, product):
+        if product in self.items:
+            product.stock += self.items[product]
+            del self.items[product]
+
+    def update_quantity(self, product, new_quantity):
+        if product in self.items:
+            old_quantity = self.items[product]
+            difference = new_quantity - old_quantity
+
+            if product.stock >= difference:
+                self.items[product] = new_quantity
+                product.stock -= difference
+            else:
+                print(f"Недостаточно товара {product.name} на складе")
