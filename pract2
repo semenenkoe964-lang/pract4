@@ -1,0 +1,21 @@
+class Vehicle:
+    def __init__(self, brand, model, year):
+        self.brand = brand
+        self.model = model
+        self.year = year
+
+    def get_description(self):
+        return f"Транспортное средство: {self.brand} {self.model} ({self.year})"
+
+
+class Car(Vehicle):
+    def get_description(self):
+        return f"Автомобиль: {self.brand} {self.model} ({self.year}) - наземное транспортное средство"
+
+class Motorcycle(Vehicle):
+    def get_description(self):
+        return f"Мотоцикл: {self.brand} {self.model} ({self.year}) - двухколесное транспортное средство"
+
+class Airplane(Vehicle):
+    def get_description(self):
+        return f"Самолет: {self.brand} {self.model} ({self.year}) - воздушное транспортное средство"
