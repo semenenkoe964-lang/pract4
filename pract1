@@ -1,0 +1,27 @@
+class Employee:
+    def __init__(self, name, base_salary):
+        self.name = name
+        self.base_salary = base_salary
+
+    def calculate_salary(self):
+        return self.base_salary
+
+class Manager(Employee):
+    def __init__(self, name, base_salary, team_size):
+        super().__init__(name, base_salary)
+        self.team_size = team_size
+
+    def calculate_salary(self):
+        bonus = self.team_size * 5000
+        return self.base_salary + bonus
+
+
+# Дочерний класс Developer
+class Developer(Employee):
+    def __init__(self, name, base_salary, programming_languages):
+        super().__init__(name, base_salary)
+        self.programming_languages = programming_languages
+
+    def calculate_salary(self):
+        bonus = len(self.programming_languages) * 3000
+        return self.base_salary + bonus
